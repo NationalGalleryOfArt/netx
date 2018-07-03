@@ -1,1 +1,1 @@
-# netx
+# This repository contains programs, scripts, and other utilities that are used by the National Gallery of Art, Washington to integrate NetX with other systems such as TMS, Adobe AEM, and our IIIF Image Server, IIP Image.
