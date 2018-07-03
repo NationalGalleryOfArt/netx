@@ -1,0 +1,12 @@
+<task
+    xmlns="http://www.w3.org/1999/xhtml" id="TMSDataSyncAutoTask" name="TMSDataSyncAutoTask">
+    <matchCriteria type="and">
+        <criteria name="Object TMS ID" type="action" value="attributeChange"></criteria>
+        <criteria name="Object TMS ID" type="attribute" value="^(?!\s*$).+"></criteria>
+    </matchCriteria>
+    <customJob className="com.netxposure.products.imageportal.module.metadata.sync.job.MetadataSyncJob" idSyncName="Update TMS Metadata"></customJob>
+    <modifications></modifications>
+    <repurpose></repurpose>
+    <exports></exports>
+    <notifications></notifications>
+</task>
