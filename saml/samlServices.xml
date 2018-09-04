@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<samlServices>
+    <samlService>
+        <name>login</name>
+        <!--custom.index_page = /saml/login -->
+        <idpUrl>https://sts.nga.gov/adfs/ls/</idpUrl>
+        <certificateLocation>/opt/netx/netx/config/nga_token_signing_x509.cer</certificateLocation>
+        <base64>true</base64>
+        <attributeStatementTagName>AttributeStatement</attributeStatementTagName>
+        <userLevel>consumer</userLevel>
+        <!-- groupRequired>true</groupRequired -->
+        <!-- The noAccessUrl is where users are routed when they have no valid group mapping -->
+        <!-- noAccessUrl>https://www.nga.gov</noAccessUrl -->
+        <attributes>
+            <attribute>
+                <saml>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname</saml>
+                <netx>name1</netx>
+            </attribute>
+            <attribute>
+                <saml>Login</saml>
+                <netx>login</netx>
+            </attribute>
+            <attribute>
+                <saml>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname</saml>
+                <netx>name3</netx>
+            </attribute>
+            <attribute>
+                <saml>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress</saml>
+                <netx>email</netx>
+            </attribute>
+            <attribute>
+                <saml>http://schemas.xmlsoap.org/claims/Group</saml>
+                <netx>groups</netx>
+            </attribute>
+        </attributes>
+        <groups>
+            <group>
+                <saml>NetX Users</saml>
+                <netx>NetX Users</netx>
+            </group>
+        </groups>
+    </samlService>
+</samlServices>
