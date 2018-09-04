@@ -6,7 +6,7 @@ if [ "$(whoami)" != "$target_user" ]; then
   exec sudo -u "$target_user" -- "$0" "$@"
 fi
 
-source /usr/local/nga/bin/netxdeploy/netx/netx_servers.config
+source ../netx_servers.config
 
 if [ "$#" -lt 1 ]; then
     echo "You must specify at least one set of servers for deployment: (dev|devapp|devutil|tst|tstapp|tstutil|prod|prodapp|produtil)"
@@ -14,12 +14,18 @@ if [ "$#" -lt 1 ]; then
 fi
 
 
-# cd to the proper working directory
-cd /usr/local/nga/bin/netxdeploy/netx/auto_tasks
-
 # read secrets
 source /usr/local/nga/etc/tmsprivateextract.conf
+if [ "$?" -ne 0 ]; then
+    echo "no config found for tmsprivateextract";
+    exit 1;
+fi
+
 source /usr/local/nga/etc/netxapi.conf
+if [ "$?" -ne 0 ]; then
+    echo "no config found for netx api";
+    exit 1;
+fi
 
 credentials_json="[\"${netx_api_username}\", \"${netx_api_password}\"]"
 
@@ -52,15 +58,16 @@ for e in $@; do
             exit $retval
         fi
 
-        authresponse=`curl -s -i -D /dev/null -X POST "http://${server}:8080/x7/v1.2/json/" -H "Content-Type: text/json" --data-binary "@./target/auth.json" -o -`
-        #echo $authresponse
+        #echo "curl -s -i -D /dev/null -X POST \"https://${server}.nga.gov/x7/v1.2/json/\" -H \"Content-Type: text/json\" --data-binary \"@./target/auth.json\" -o -";
+        authresponse=`curl -s -i -D /dev/null -X POST "https://${server}.nga.gov/x7/v1.2/json/" -H "Content-Type: text/json" --data-binary "@./target/auth.json" -o -`
+        #echo "---${authresponse}---";
         if [[ $authresponse =~ result\":\" ]]; then
             authresponse=`echo ${authresponse} | sed 's/\(.*\)result":"\([^"]*\)"\(.*\)/\2/'`
         else
             authresponse=""
         fi
 
-        if [ $authresponse == "" ]; then
+        if [ "$authresponse" == "" ]; then
             echo "Could not authenticate to NetX on $server. Aborting..."
             exit 1;
         fi
@@ -76,7 +83,7 @@ for e in $@; do
             setautotask_json="${header_json/_params_/${task_json}}"
             fname=`echo "$task" | sed "s/.*\///"`
             echo "${setautotask_json}" > ./target/${fname}.json
-            authresponse=`curl -s -i -D /dev/null -X POST "http://${server}:8080/x7/v1.2/json/" -H "Content-Type: text/json" --data-binary "@./target/${fname}.json" -o -`
+            authresponse=`curl -s -i -D /dev/null -X POST "https://${server}.nga.gov/x7/v1.2/json/" -H "Content-Type: text/json" --data-binary "@./target/${fname}.json" -o -`
             #echo $authresponse
             if [[ $authresponse =~ result\":true ]]; then
                 echo "Deployed autotask $task successfully"
