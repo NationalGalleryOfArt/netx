@@ -11,7 +11,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 source ${DIR}/../netx_servers.config
 
 if [ "$#" -lt 1 ]; then
-    echo "You must specify at least one set of servers for deployment: (dev|devapp|devutil|tst|tstapp|tstutil|prod|prodapp|produtil)"
+    echo "You must specify at least one set of servers for deployment: (dev|devapp|devutil|test|testapp|testutil|prod|prodapp|produtil)"
     exit 1;
 fi
 
