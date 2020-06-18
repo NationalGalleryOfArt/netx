@@ -9,7 +9,7 @@ fi
 source ../netx_servers.config
 
 if [ "$#" -lt 1 ]; then
-    echo "You must specify at least one set of servers for deployment: (dev|devapp|devutil|tst|tstapp|tstutil|prod|prodapp|produtil)"
+    echo "You must specify at least one set of servers for deployment: (dev|devapp|devutil|test|testapp|testutil|prod|prodapp|produtil)"
     exit 1;
 fi
 
@@ -50,6 +50,7 @@ echo "$datasync" > ./target/syncedMetadata.xml
 for e in $@; do
     serverlist=${servers[${e}]};
     for server in ${serverlist}; do 
+echo $server
         #echo $server
         echo "scp ./target/syncedMetadata.xml netx@$server:/opt/netx/netx/config/"
         scp ./target/syncedMetadata.xml netx@$server:/opt/netx/netx/config/
