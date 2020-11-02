@@ -2,7 +2,7 @@
 <metadatasync>
     <sync type="scalar" log="detail" name="Update TMS Metadata">
         <source name="TMSPrivateExtract" type="database" jdbc="jdbc:jtds:sqlserver://ap-tmsextract-db.nga.gov/TMSPrivateExtract;domain=nga.gov;prepareSQL=2;useNTLMv2=true"
-                query="SELECT TOP 1 accessionNum, classification, subclassification, attribution, title, creditLine, displayDate, dimensions, medium, locationDesc, departmentAbbr, exhibitionDexNums, exhibitionIDs, statusDesc, objectRightsType, needsPhotography, thumbnailsProhibited, zoomPermissionGranted, maxPixels, %1 AS assetId FROM eDAM_view_objects WHERE objectID = COALESCE(%2,'') AND EXISTS(SELECT objectID FROM eDAM_view_objects WHERE objectID = COALESCE(%3,'')) UNION SELECT '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', %4 AS assetId, '' WHERE NOT EXISTS(SELECT objectID FROM eDAM_view_objects WHERE objectID = COALESCE(%5,''))"
+                query="SELECT TOP 1 accessionNum, classification, subclassification, attribution, title, creditLine, displayDate, dimensions, medium, locationDesc, departmentAbbr, exhibitionDexNums, exhibitionIDs, exhStatus, loanObjectStatus, statusDesc, objectRightsType, needsPhotography, thumbnailsProhibited, zoomPermissionGranted, maxPixels, %1 AS assetId FROM eDAM_view_objects WHERE objectID = COALESCE(%2,'') AND EXISTS(SELECT objectID FROM eDAM_view_objects WHERE objectID = COALESCE(%3,'')) UNION SELECT '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', %4 AS assetId WHERE NOT EXISTS(SELECT objectID FROM eDAM_view_objects WHERE objectID = COALESCE(%5,''))"
                 username="tmsprivateextract_username" password="tmsprivateextract_password" >
             <param type="ASSET_ID"              position="1" />
             <param type="ASSET_ATTRIBUTE"       attribute="Object TMS ID" position="2" />
@@ -22,6 +22,8 @@
             <field name="departmentAbbr"        column="departmentAbbr"/>
             <field name="exhibitionDexNums"     column="exhibitionDexNums"/>
             <field name="exhibitionIDs"         column="exhibitionIDs"/>
+            <field name="exhStatus"             column="exhStatus"/>
+            <field name="loanObjectStatus"      column="loanObjectStatus"/>
             <field name="statusDesc"            column="statusDesc"/>
             <field name="objectRightsType"      column="objectRightsType"/>
             <field name="needsPhotography"      column="needsPhotography"/>
@@ -49,6 +51,8 @@
                 <map field="departmentAbbr"         attribute="Object NGA Department"/>
                 <map field="exhibitionDexNums"      attribute="Object Exhibit ID and Dex ID"/>
                 <map field="exhibitionIDs"          attribute="Object Exhibit ID"/>
+                <map field="exhStatus"              attribute="Object Exhibit State"/>
+                <map field="loanObjectStatus"       attribute="Object Exhibit Loan Status"/>
                 <map field="statusDesc"             attribute="Object Accession Status"/>
                 <map field="objectRightsType"       attribute="Object Rights Type"/>
                 <map field="needsPhotography"       attribute="Object Photography Needed"/>

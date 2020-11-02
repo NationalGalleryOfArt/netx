@@ -23,6 +23,8 @@
         <modify name="Object Exhibit ID" type="attribute" value=""></modify>
         <modify name="Object NGA Department" type="attribute" value=""></modify>
         <modify name="Object Exhibit ID and Dex ID" type="attribute" value=""></modify>
+        <modify name="Object Exhibit Loan Status" type="attribute" value=""></modify>
+        <modify name="Object Exhibit State" type="attribute" value=""></modify>
     </modifications>
     <repurpose></repurpose>
     <exports></exports>
