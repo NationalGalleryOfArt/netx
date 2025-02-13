@@ -1,32 +1,43 @@
 <task
     xmlns="http://www.w3.org/1999/xhtml" id="TMSClearAttributes" name="TMSClearAttributes">
     <matchCriteria type="and">
-        <criteria name="Object TMS ID" type="action" value="attributeChange"></criteria>
-        <criteria name="Object TMS ID" type="attribute" value="^$"></criteria>
+        <criteria name="Object TMS ID" type="action" value="attributeChange"/>
+        <criteria name="Object TMS ID" type="attribute" value="^$"/>
     </matchCriteria>
     <modifications>
-        <modify name="Object Accession Number" type="attribute" value=""></modify>
-        <modify name="Object Artist" type="attribute" value=""></modify>
-        <modify name="Object Title" type="attribute" value=""></modify>
-        <modify name="Object Date" type="attribute" value=""></modify>
-        <modify name="Object Medium" type="attribute" value=""></modify>
-        <modify name="Object Classification" type="attribute" value=""></modify>
-        <modify name="Object Sub-Classification" type="attribute" value=""></modify>
-        <modify name="Object Dimensions" type="attribute" value=""></modify>
-        <modify name="Object Credit" type="attribute" value=""></modify>
-        <modify name="Object Location" type="attribute" value=""></modify>
-        <modify name="Object Accession Status" type="attribute" value=""></modify>
-        <modify name="Object Rights Type" type="attribute" value=""></modify>
-        <modify name="Object Photography Needed" type="attribute" value=""></modify>
-        <modify name="Object Thumbnails Prohibited" type="attribute" value=""></modify>
-        <modify name="Object Zoom Permissions Granted" type="attribute" value=""></modify>
-        <modify name="Object Exhibit ID" type="attribute" value=""></modify>
-        <modify name="Object NGA Department" type="attribute" value=""></modify>
-        <modify name="Object Exhibit ID and Dex ID" type="attribute" value=""></modify>
-        <modify name="Object Exhibit Loan Status" type="attribute" value=""></modify>
-        <modify name="Object Exhibit State" type="attribute" value=""></modify>
+        <modify name="Object Accession Number" type="attribute" value=""/>
+        <modify name="Object Artist" type="attribute" value=""/>
+        <modify name="Object Title" type="attribute" value=""/>
+        <modify name="Object Date" type="attribute" value=""/>
+        <modify name="Object Medium" type="attribute" value=""/>
+        <modify name="Object Classification" type="attribute" value=""/>
+        <modify name="Object Sub-Classification" type="attribute" value=""/>
+        <modify name="Object Dimensions" type="attribute" value=""/>
+        <modify name="Object Credit" type="attribute" value=""/>
+        <modify name="Object Location" type="attribute" value=""/>
+        <modify name="Object Accession Status" type="attribute" value=""/>
+        <modify name="Object Rights Type" type="attribute" value=""/>
+        <modify name="Object Photography Needed" type="attribute" value=""/>
+        <modify name="Object Thumbnails Prohibited" type="attribute" value=""/>
+        <modify name="Object Zoom Permissions Granted" type="attribute" value=""/>
+        <modify name="Object Exhibit ID" type="attribute" value=""/>
+        <modify name="Object NGA Department" type="attribute" value=""/>
+        <modify name="Object Exhibit ID and Dex ID" type="attribute" value=""/>
+        <modify name="Object Exhibit Loan Status" type="attribute" value=""/>
+        <modify name="Object Exhibit State" type="attribute" value=""/>
+        <modify name="Exhibition Image Expiration Date" type="attribute" value=""/>
+        <modify name="Exhibition Image Copyright" type="attribute" value=""/>
+        <modify name="Exhibition Key Image" type="attribute" value=""/>
+        <modify name="Exhibition Book Image" type="attribute" value=""/>
+        <modify name="Exhibition Image Expiration Date" type="attribute" value=""/>
+        <modify name="Exhibition Image Copyright" type="attribute" value=""/>
+        <modify name="Exhibition Image Original Filename" type="attribute" value=""/>
+        <modify name="Exhibition Image Credit" type="attribute" value=""/>
+        <modify name="Exhibition Image Use Restrictions" type="attribute" value=""/>
+        <modify name="Exhibition Image Approved Uses" type="attribute" value=""/>
+        <modify name="Exhibition Proof Required" type="attribute" value=""/>
     </modifications>
-    <repurpose></repurpose>
-    <exports></exports>
-    <notifications></notifications>
+    <repurpose/>
+    <exports/>
+    <notifications/>
 </task>
