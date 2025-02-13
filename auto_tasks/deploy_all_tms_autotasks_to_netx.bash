@@ -52,7 +52,7 @@ datasync=`cat syncedMetadata.xml`
 # replace template with our secrets
 datasync="${datasync/tmsprivateextract_username/${tmsprivateextract_username}}"
 datasync="${datasync/tmsprivateextract_password/${tmsprivateextract_password}}"
-datasync="${datasync/connection_string/${tmsprivate_connection_string}}"
+datasync="${datasync/tmsprivateextract_connection_string/${tmsprivate_connection_string}}"
 
 mkdir -p target
 
