@@ -1,0 +1,6 @@
+target
+archive
+*.bak
+*.backup
+*.dave
+*.dave*
