@@ -15,6 +15,7 @@
         <modify name="Object Dimensions" type="attribute" value=""/>
         <modify name="Object Credit" type="attribute" value=""/>
         <modify name="Object Location" type="attribute" value=""/>
+        <modify name="Object Location Detail" type="attribute" value=""/>
         <modify name="Object Accession Status" type="attribute" value=""/>
         <modify name="Object Rights Type" type="attribute" value=""/>
         <modify name="Object Photography Needed" type="attribute" value=""/>

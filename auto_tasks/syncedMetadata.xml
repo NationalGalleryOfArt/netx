@@ -2,7 +2,7 @@
 <metadatasync>
     <sync type="scalar" log="detail" name="Update TMS Metadata">
         <source name="TMSPrivateExtract" type="database" jdbc="tmsprivateextract_connection_string"
-                query="SELECT TOP 1 accessionNum, classification, subclassification, attribution, title, creditLine, displayDate, dimensions, medium, locationDesc, departmentAbbr, exhibitionDexNums, exhibitionIDs, exhStatus, loanObjectStatus, statusDesc, objectRightsType, needsPhotography, thumbnailsProhibited, zoomPermissionGranted, maxPixels, ExhibitionKeyImage, ExhibitionImageInBook, ExhibitionImageExpirationDate, ExhibitionImageCopyright, ExhibitionImageOriginalFilename, ExhibitionImageCredit, ExhibitionImageUseRestrictions, ExhibitionImageApprovedUses, ExhibitionProofRequired, %1 AS assetId FROM eDAM_view_objects WHERE objectID = COALESCE(%2,'') AND EXISTS(SELECT objectID FROM eDAM_view_objects WHERE objectID = COALESCE(%3,'')) UNION SELECT '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', %4 AS assetId WHERE NOT EXISTS(SELECT objectID FROM eDAM_view_objects WHERE objectID = COALESCE(%5,''))"
+                query="SELECT TOP 1 accessionNum, classification, subclassification, attribution, title, creditLine, displayDate, dimensions, medium, locationDesc, ObjectLocationDetail, departmentAbbr, exhibitionDexNums, exhibitionIDs, exhStatus, loanObjectStatus, statusDesc, objectRightsType, needsPhotography, thumbnailsProhibited, zoomPermissionGranted, ExhibitionKeyImage, ExhibitionImageInBook, ExhibitionImageExpirationDate, ExhibitionImageCopyright, ExhibitionImageOriginalFilename, ExhibitionImageCredit, ExhibitionImageUseRestrictions, ExhibitionImageApprovedUses, ExhibitionProofRequired, %1 AS assetId FROM eDAM_view_objects WHERE objectID = COALESCE(%2,'') AND EXISTS(SELECT objectID FROM eDAM_view_objects WHERE objectID = COALESCE(%3,'')) UNION SELECT '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', %4 AS assetId WHERE NOT EXISTS(SELECT objectID FROM eDAM_view_objects WHERE objectID = COALESCE(%5,''))"
 		 username="tmsprivateextract_username" password="tmsprivateextract_password" >
             <param type="ASSET_ID"              position="1" />
             <param type="ASSET_ATTRIBUTE"       attribute="Object TMS ID" position="2" />
@@ -19,6 +19,7 @@
             <field name="dimensions"            column="dimensions"/>
             <field name="medium"                column="medium"/>
             <field name="locationDesc"          column="locationDesc"/>
+            <field name="ObjectLocationDetail"  column="ObjectLocationDetail"/>
             <field name="departmentAbbr"        column="departmentAbbr"/>
             <field name="exhibitionDexNums"     column="exhibitionDexNums"/>
             <field name="exhibitionIDs"         column="exhibitionIDs"/>
@@ -38,7 +39,7 @@
             <field name="ExhibitionImageUseRestrictions" column="ExhibitionImageUseRestrictions"/>
             <field name="ExhibitionImageApprovedUses" column="ExhibitionImageApprovedUses"/>
             <field name="ExhibitionProofRequired" column="ExhibitionProofRequired"/>
-            <field name="maxPixels"             column="maxPixels"/>
+            <!-- field name="maxPixels"             column="maxPixels"/ -->
             <field name="assetId"               column="assetId"/>
         </source>
         <destination type="DAM">
@@ -57,6 +58,7 @@
                 <map field="dimensions"             attribute="Object Dimensions"/>
                 <map field="medium"                 attribute="Object Medium"/>
                 <map field="locationDesc"           attribute="Object Location"/>
+                <map field="ObjectLocationDetail"   attribute="Object Location Detail"/>
                 <map field="departmentAbbr"         attribute="Object NGA Department"/>
                 <map field="exhibitionDexNums"      attribute="Object Exhibit ID and Dex ID"/>
                 <map field="exhibitionIDs"          attribute="Object Exhibit ID"/>
@@ -76,7 +78,7 @@
                 <map field="ExhibitionImageUseRestrictions"  attribute="Exhibition Image Use Restrictions"/>
                 <map field="ExhibitionImageApprovedUses"  attribute="Exhibition Image Approved Uses"/>
                 <map field="ExhibitionProofRequired"  attribute="Exhibition Proof Required"/>
-                <map field="maxPixels"              attribute="Web-Max Pixels"/>
+                <!-- map field="maxPixels"              attribute="Web-Max Pixels"/ -->
             </records>
         </destination>
     </sync>
