@@ -3,7 +3,7 @@
     <samlService>
         <name>login</name>
         <!--custom.index_page = /saml/login -->
-        <idpUrl>https://sts.nga.gov/adfs/ls/</idpUrl>
+        <idpUrl>https://adfs.nga.gov/adfs/ls/</idpUrl>
         <certificateLocation>/opt/netx/netx/config/nga_token_signing_x509.cer</certificateLocation>
         <base64>true</base64>
         <attributeStatementTagName>AttributeStatement</attributeStatementTagName>
