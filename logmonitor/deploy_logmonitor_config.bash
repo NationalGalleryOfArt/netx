@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "hi"
+
 target_user="netx"
 if [ "$(whoami)" != "$target_user" ]; then
   echo "exec sudo -u \"$target_user\" -- \"$0\" \"$@\""
