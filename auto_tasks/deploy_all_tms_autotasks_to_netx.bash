@@ -1,5 +1,7 @@
 #!/bin/bash
 
+die() { echo "$*" >&2; exit 1; }
+
 target_user="netx"
 if [ "$(whoami)" != "$target_user" ]; then
   echo "exec sudo -u \"$target_user\" -- \"$0\" \"$@\""
@@ -41,6 +43,15 @@ case $1 in
     die "no connection string for this environment"
 esac
 
+# The `source` checks above return the status of the last assignment in each file, so a
+# config that exists but defines nothing (or renames a variable) passes them. Validate the
+# values themselves -- an unset one silently substitutes empty text into syncedMetadata.xml,
+# producing a deploy that scp's cleanly, returns result":true, and can never connect.
+for v in tmsprivateextract_username tmsprivateextract_password tmsprivate_connection_string \
+         netx_api_username netx_api_password; do
+    [ -n "${!v}" ] || die "required value '$v' is unset or empty -- check /usr/local/nga/etc/*.conf"
+done
+
 credentials_json="[\"${netx_api_username}\", \"${netx_api_password}\"]"
 
 header_json=`cat api_header.json`
@@ -71,7 +82,7 @@ for e in $@; do
         scp ./target/syncedMetadata.xml netx@$server:/opt/netx/netx/config/
         if [ $? -ne 0 ]; then
             echo "Problem copying syncedMetadata.xml to $server.  Aborting";
-            exit $retval
+            exit 1
         fi
 
         authresponse=`curl -s -i -D /dev/null -X POST "https://${server}.nga.gov/x7/v1.2/json/" -H "Content-Type: text/json" --data-binary "@./target/auth.json" -o -`
