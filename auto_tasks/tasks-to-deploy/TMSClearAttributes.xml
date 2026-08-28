@@ -37,6 +37,8 @@
         <modify name="Exhibition Image Use Restrictions" type="attribute" value=""/>
         <modify name="Exhibition Image Approved Uses" type="attribute" value=""/>
         <modify name="Exhibition Proof Required" type="attribute" value=""/>
+        <modify name="Object Copyright" type="attribute" value=""/>
+        <modify name="Exhibition Photography Restricted" type="attribute" value=""/>
     </modifications>
     <repurpose/>
     <exports/>
